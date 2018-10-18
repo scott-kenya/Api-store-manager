@@ -42,3 +42,13 @@ class Sales(Resource):
 			return make_response(jsonify({'list': sales}),201)
 
 		
+class Sale_id(Resource):
+
+	def get(self, sale_id):
+		sale = [sale for sale in sales if sale['sale_id'] == sale_id] or None
+		if sale:
+			return jsonify({'sale':sale[0]})
+		else:
+			return jsonify({'message': "item not found"})
+		return 404
+ 
