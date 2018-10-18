@@ -36,6 +36,17 @@ class Test_products(unittest.TestCase):
 		response = self.test_client.get('/api/v1/products/1',content_type="application/json")
 		self.assertEqual(response.status_code, 200)
 
+	def test_post_sales(self):
+		""" dummy data"""
+		data = json.dumps({
+			"id": "1",
+			})
+		response = self.test_client.post('/api/v1/sales', data = data, content_type="application/json")
+		self.assertEqual(response.status_code, 201)
+
+
+
+
 	def test_get_sales(self):
 		response = self.test_client.get('/api/v1/sales', content_type="application/json")
 		self.assertEqual(response.status_code, 200)
