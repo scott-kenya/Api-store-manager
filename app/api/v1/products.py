@@ -40,4 +40,14 @@ class Products(Resource):
 				
 				return make_response(jsonify({'list': products}), 201)
 
-		
+	
+	class Product_id(Resource):
+
+		def get(self, product_id):
+			product = [product for product in products if product['product_id'] == product_id] or None
+			if product:
+				return jsonify({'product':product[0]})
+			else:
+				return jsonify({'message': "specific product not found"})
+			return 404
+	 	
