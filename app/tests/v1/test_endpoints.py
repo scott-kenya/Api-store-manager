@@ -59,4 +59,10 @@ class Test_products(unittest.TestCase):
 		self.assertEqual(response.status_code, 400)
 
 	
+
+	@classmethod
+	def tearDownClass(self):
+		self.app_context.pop()
+		
+
 		
