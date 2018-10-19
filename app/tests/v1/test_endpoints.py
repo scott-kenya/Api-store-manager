@@ -1,7 +1,7 @@
 import unittest
 import json
 from app import create_app
-from ...instance.config import app_config
+from instance.config import app_config
 
 
 class Test_products(unittest.TestCase):
