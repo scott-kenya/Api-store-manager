@@ -32,3 +32,7 @@ class Test_products(unittest.TestCase):
 		response = self.test_client.get('/api/v1/products', content_type="application/json")
 		self.assertEqual(response.status_code, 200)
 	
+	def test_get_products_by_id(self):
+		response = self.test_client.get('/api/v1/products/1',content_type="application/json")
+		self.assertEqual(response.status_code, 200)
+
