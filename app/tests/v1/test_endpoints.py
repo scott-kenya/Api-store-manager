@@ -31,11 +31,11 @@ class Test_products(unittest.TestCase):
 	def test_get_products(self):
 		response = self.test_client.get('/api/v1/products', content_type="application/json")
 		self.assertEqual(response.status_code, 200)
-		
 
 	def test_get_products_by_id(self):
 		response = self.test_client.get('/api/v1/products/1',content_type="application/json")
 		self.assertEqual(response.status_code, 200)
+
 
 
 	def test_post_sales(self):
@@ -50,12 +50,9 @@ class Test_products(unittest.TestCase):
 		response = self.test_client.post('/api/v1/sales', data = data, content_type="application/json")
 		self.assertEqual(response.status_code, 201)
 
-
-
 	def test_get_sales(self):
 		response = self.test_client.get('/api/v1/sales', content_type="application/json")
 		self.assertEqual(response.status_code, 200)
-		
 
 	def test_get_sales_by_id(self):
 		response = self.test_client.get('/api/v1/sales/1',content_type="application/json")
@@ -67,12 +64,8 @@ class Test_products(unittest.TestCase):
 		self.assertEqual(response.status_code, 400)
 
 	
-
-
-
-
-
 	@classmethod
 	def tearDownClass(self):
 		self.app_context.pop()
 		
+
