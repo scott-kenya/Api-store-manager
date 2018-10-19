@@ -9,9 +9,8 @@ class Sales(Resource):
 	
 	def get(self):
 		"""Endpoint for fetching all products"""
-		return jsonify({'sales'},{'message':'Item not found'},
-						{'status': 200}
-			)
+		return jsonify(sales)
+		return jsonify({'message':'Item not found'},{'status': 200})
 
 	
 	def post(self):
@@ -49,6 +48,8 @@ class Sales(Resource):
 			return make_response(jsonify({'list': sales}),201)
 
 		
+
+
 class Sale_id(Resource):
 
 	def get(self, sale_id):
