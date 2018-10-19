@@ -5,7 +5,6 @@ from flask_restful import Resource, Api, reqparse
 
 products = []
 
-
 class Products(Resource):
 	
 	def get(self):
@@ -14,6 +13,7 @@ class Products(Resource):
 		return jsonify({'message':'Item not found'},
 						{'status': 200}
 			)
+
 
 
 	def post(name):
