@@ -1,15 +1,18 @@
 from flask import Flask, make_response, jsonify, request
-from flask_restful import Resource, Api, reqparse
+from flask_restful import Resource, Api
+#from app import Flask
 
 
 
 products = []
 
-class Products(Resource):
-	
+
+
+class Products(Resource): 
 	def get(self):
+		return jsonify({'message': 'This is only available to authorized personnel'})
 		"""Endpoint for fetching all products"""
-		return jsonify(products)
+		#return jsonify(products)
 		return jsonify({'message':'Item not found'},{'status': 200})
 
 	

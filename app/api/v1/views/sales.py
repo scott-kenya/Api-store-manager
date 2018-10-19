@@ -1,9 +1,32 @@
 from flask import Flask, make_response, jsonify, request
 from flask_restful import Resource, Api, reqparse
+import jwt
+import datetime
+from functools import wraps
 
 
 
 sales = []
+
+def token_required(f):
+	@wraps(f)
+	def decorated(*args, **kwargs):
+		token =request.args.get('token')
+
+		if not token:
+			return jsonify({'message': 'Token is missing'}), 403
+
+		try:
+			data = jwt.decode(token, app.config['SECRET_KEY'])
+
+		except:
+			return jsonify({'message': 'Token is invalid'}), 403
+		return f(*args, **kwargs)
+
+	return decorated
+
+
+
 
 class Sales(Resource):
 	
@@ -47,8 +70,6 @@ class Sales(Resource):
 			
 			return make_response(jsonify({'list': sales}),201)
 
-		
-
 
 class Sale_id(Resource):
 
@@ -59,4 +80,23 @@ class Sale_id(Resource):
 		else:
 			return jsonify({'message': "item not found"})
 		return 404
- 
+
+class UserRegistration(Resource):
+    def post(self):
+        return jsonify({'message': 'User registration'})
+
+
+class UserLogin(Resource):
+    # def post(self):
+    #     return jsonify({'message': 'User login'})
+    def login(self):
+    	auth = request.authorization
+
+	if auth and auth.password == 'password':
+		token = jwt.encode({'user':auth.username, 'exp': datatime.datatime.utcnow() +
+			datatime.timedelta(minutes=45)},app.config['SECRET_KEY'] )
+
+		return jsonify({'token': token.decode('UTF-8')})
+
+	return make_response('could not verify!', 401, 
+		{'WWW.Authenticate': 'Basic realm="login Required"'})
