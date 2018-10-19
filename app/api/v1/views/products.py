@@ -8,31 +8,33 @@ products = []
 class Products(Resource):
 	def get(self):
 		"""Endpoint for fetching all products"""
-		return jsonify({'products},{'message':'Item not found'},{'status': 200})
+		return jsonify(products)
+		return jsonify({'message':'Item not found'},{'status': 200})
 
    	def post(self):
-        """Endpoint for adding new pdt"""
-        data = request.get_json()
-        if not data:
-            return jsonify({"message": "field cannot be empty"})
-        name = data['name']
-        price = data['price']
-        product_id = len(products)+1
-        quantity = data['quantity']
-        if not name or name == "":
-            return jsonify({"message": "Please enter product name"}), 404
-        else:
+        #"""Endpoint for adding new pdt"""
+        	data = request.get_json()
 
-            payload = {
-                'name': name,
-                'price': price,
-                'product_id': product_id,
-                'quantity': quantity
-            }
+        	if not data:
+        		return jsonify({"message": "field cannot be empty"})
+        		name = data['name']
+        		price = data['price']
+        		product_id = len(products)+1
+        		quantity = data['quantity']
+	        	if not name or name == "":
+	        		return jsonify({"message": "Please enter product name"}), 404
 
-            products.append(payload)
+	        	else:
+	        		payload = {
+	                'name': name,
+	                'price': price,
+	                'product_id': product_id,
+	                'quantity': quantity
+	            }
 
-            return make_response(jsonify({'list': products}), 201)
+	            	products.append(payload)
+
+	            	return make_response(jsonify({'list': products}), 201)
 
 class Product_id(Resource):
 
