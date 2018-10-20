@@ -3,7 +3,9 @@ from app import create_app
 app = create_app("development")
 app = Flask(__name__)
 
-
+@app.route('/')
+def index():
+	return '<h1> hi Scott!!! <h1>'
 
 
 if __name__ == '__main__':
