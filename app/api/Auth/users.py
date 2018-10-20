@@ -75,3 +75,24 @@ if __name__ == '__main__':
 
 	# 	return func(current_user, *args, **kwargs)
 	# return decorated
+
+
+# 	class UserRegistration(Resource):
+#     def post(self):
+#         return jsonify({'message': 'User registration'})
+
+
+# class UserLogin(Resource):
+#     # def post(self):
+#     #     return jsonify({'message': 'User login'})
+#     def login(self):
+#     	auth = request.authorization
+
+# 	if auth and auth.password == 'password':
+# 		token = jwt.encode({'user':auth.username, 'exp': datatime.datatime.utcnow() +
+# 			datatime.timedelta(minutes=45)},app.config['SECRET_KEY'] )
+
+# 		return jsonify({'token': token.decode('UTF-8')})
+
+# 	return make_response('could not verify!', 401, 
+# 		{'WWW.Authenticate': 'Basic realm="login Required"'})

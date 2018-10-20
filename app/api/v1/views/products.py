@@ -10,9 +10,9 @@ products = []
 
 class Products(Resource): 
 	def get(self):
-		return jsonify({'message': 'This is only available to authorized personnel'})
+		#return jsonify({'message': 'This is only available to authorized personnel'})
 		"""Endpoint for fetching all products"""
-		#return jsonify(products)
+		return jsonify(products)
 		return jsonify({'message':'Item not found'},{'status': 200})
 
 	
@@ -59,4 +59,13 @@ class Product_id(Resource):
 		else:
 			return jsonify({'message': "item not found"})
 		return 404
- 
+
+	def delete(self, product_id):
+		product = [product for product in products if product['product_id'] == product_id] or None
+		if product:
+			return jsonify({'message':'Item deleted'})
+		else:
+			return jsonify({'message': "item not found"})
+		return 404
+ 	
+
