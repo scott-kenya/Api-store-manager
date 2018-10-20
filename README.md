@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.com/scott-kenya/Api-store-manager.svg?branch=develop)](https://travis-ci.com/scott-kenya/Api-store-manager)
+[![Build Status](https://travis-ci.com/scott-kenya/Api-store-manager.svg?branch=develop)](https://travis-ci.com/scott-kenya/Api-store-manager) [![Coverage Status](https://coveralls.io/repos/github/scott-kenya/Api-store-manager/badge.svg)](https://coveralls.io/github/scott-kenya/Api-store-manager)
 
 
 Configuration of Project Environment
