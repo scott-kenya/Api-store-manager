@@ -1,4 +1,8 @@
-Configuration of Project Environment
+
+[![Build Status](https://travis-ci.com/scott-kenya/Api-store-manager.svg?branch=develop)](https://travis-ci.com/scott-kenya/Api-store-manager)
+
+
+onfiguration of Project Environment
 *************************************
 
 This is an API that manages the store(myStore) using Python3, Flask, and Flask_restful
