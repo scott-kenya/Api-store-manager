@@ -1,5 +1,4 @@
-
-[![Build Status](https://travis-ci.com/scott-kenya/Api-store-manager.svg?branch=develop)](https://travis-ci.com/scott-kenya/Api-store-manager) 
+[![Build Status](https://travis-ci.com/scott-kenya/Api-store-manager.svg?branch=develop)](https://travis-ci.com/scott-kenya/Api-store-manager)
 
 
 Configuration of Project Environment
