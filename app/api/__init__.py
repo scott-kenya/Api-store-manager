@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint
 from flask_restful import Api, Resource
 from app.api.v1.views.products import Products, Product_id
-from app.api.v1.views.sales import Sales, Sale_id, UserRegistration, UserLogin
+from app.api.v1.views.sales import Sales, Sale_id
 
 zed = Blueprint("api", __name__, url_prefix="/api/v1")
 api = Api(zed)
