@@ -1,21 +1,31 @@
-from flask import Flask, make_response, jsonify, request
-from flask_restful import Resource, Api, reqparse
-import jwt
-import datetime
-from functools import wraps
-
+from flask import Flask, make_response, jsonify, request, abort, Blueprint
+from flask_restful import Resource, Api
+from flask_jwt_extended import (JWTManager, jwt_required, get_jwt_claims)
+from flask_httpauth import HTTPBasicAuth
 
 
 sales = []
+auth = HTTPBasicAuth()
+
+USER_DATA = {
+    "admin": "SuperSecretPwd"
+}
+
+
+@auth.verify_password
+def verify(username, password):
+    if not (username and password):
+        return False
+    return USER_DATA.get(username) == password
 
 class Sales(Resource):
-	
+	@auth.verify_password
 	def get(self):
 		"""Endpoint for fetching all products"""
 		return jsonify(sales)
 		return jsonify({'message':'Item not found'},{'status': 200})
 
-	
+	@auth.verify_password
 	def post(self):
 		"""Endpoint for adding new pdt"""
 		data = request.get_json()
@@ -52,7 +62,7 @@ class Sales(Resource):
 
 
 class Sale_id(Resource):
-
+	@auth.verify_password
 	def get(self, sale_id):
 		sale = [sale for sale in sales if sale['sale_id'] == sale_id] or None
 		if sale:
@@ -61,6 +71,7 @@ class Sale_id(Resource):
 			return jsonify({'message': "item not found"})
 		return 404
 
+	@auth.verify_password
 	def delete(self, sale_id):
 		sale = [sale for sale in sales if sale['sale_id'] == sale_id] or None
 		if sale:

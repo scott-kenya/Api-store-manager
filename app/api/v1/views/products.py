@@ -1,21 +1,38 @@
-from flask import Flask, make_response, jsonify, request
+from flask import Flask, make_response, jsonify, request, abort, Blueprint
 from flask_restful import Resource, Api
-#from app import Flask
-
+from flask_jwt_extended import (JWTManager, jwt_required, get_jwt_claims)
+from flask_httpauth import HTTPBasicAuth
 
 
 products = []
+auth = HTTPBasicAuth()
 
 
 
-class Products(Resource): 
+USER_DATA = {
+    "admin": "SuperSecretPwd"
+}
+
+
+@auth.verify_password
+def verify(username, password):
+    if not (username and password):
+        return False
+    return USER_DATA.get(username) == password
+
+
+
+
+class Products(Resource):
+	@auth.login_required
+	#@jwt_required 
 	def get(self):
 		#return jsonify({'message': 'This is only available to authorized personnel'})
 		"""Endpoint for fetching all products"""
 		return jsonify(products)
 		return jsonify({'message':'Item not found'},{'status': 200})
 
-	
+	@auth.login_required
 	def post(self):
 		"""Endpoint for adding new pdt"""
 		data = request.get_json()
@@ -51,7 +68,7 @@ class Products(Resource):
 
 		
 class Product_id(Resource):
-
+	@auth.login_required
 	def get(self, product_id):
 		product = [product for product in products if product['product_id'] == product_id] or None
 		if product:
@@ -60,6 +77,7 @@ class Product_id(Resource):
 			return jsonify({'message': "item not found"})
 		return 404
 
+	@auth.login_required
 	def delete(self, product_id):
 		product = [product for product in products if product['product_id'] == product_id] or None
 		if product:
@@ -68,4 +86,5 @@ class Product_id(Resource):
 			return jsonify({'message': "item not found"})
 		return 404
  	
-
+	# def delete(product_id):
+	# 	return requests.delete(_url('/products/{:d}/'.format(product_id)))
