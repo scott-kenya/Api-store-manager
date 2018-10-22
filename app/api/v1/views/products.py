@@ -1,6 +1,6 @@
 from flask import Flask, make_response, jsonify, request, abort, Blueprint
 from flask_restful import Resource, Api
-from flask_jwt_extended import (JWTManager, jwt_required, get_jwt_claims)
+#from flask_jwt_extended import (JWTManager, jwt_required, get_jwt_claims)
 from flask_httpauth import HTTPBasicAuth
 
 

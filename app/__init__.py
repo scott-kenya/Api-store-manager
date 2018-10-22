@@ -1,17 +1,16 @@
 from flask import Flask, jsonify
 from flask_restful import Api
-from .api.v1.views import zed
+from .api.v1 import zed
 from instance.config import app_config
 from flask_jwt_extended import JWTManager
 from flask_httpauth import HTTPBasicAuth
 
-# def create_app(self):
-# 	app = Flask(__name__)
-	
-# 	app.register_blueprint(zed)
+#code here
+from flask_login import LoginManager
 
-# 	return app
-
+app = Flask(__name__)
+# ...
+login = LoginManager(app)
 
 
 def create_app(self):

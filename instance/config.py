@@ -1,7 +1,7 @@
 import os
 
 
-class config(object):
+class Config(object):
 	DEBUG = False
 	#CSRF_ENABLED - Trues
 	SECRET = os.getenv('secret')
@@ -11,18 +11,18 @@ class config(object):
 	def init_app(app):
 		pass
 
-class DevelopmentConfig(config):
+class DevelopmentConfig(Config):
 	DEBUG = True
 
-class TestingConfig(config):
+class TestingConfig(Config):
 	DEBUG = True
 	TESTING = True
 
-class StagingConfig(config):
+class StagingConfig(Config):
 	DEBUG = False
 	TESTING = False
 
-class ProductionConfig(config):
+class ProductionConfig(Config):
 	DEBUG = False
 	TESTING = False
 

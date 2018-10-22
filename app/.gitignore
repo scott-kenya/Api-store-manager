@@ -8,6 +8,9 @@ coverage.xml
 *.cover
 .hypothesis/
 .pytest_cache/
+.vscode
+.idea
+.pytest_cache
 
 # Flask stuff:
 instance/
