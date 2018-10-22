@@ -22,9 +22,7 @@ class Test_products(unittest.TestCase):
 			"product_id": 1,
 			"quantity": 20
 			})
-		# self.create_sales= json.dumps({
-		# 	"id": "1",
-		# 	})
+		
 		response = self.test_client.post('/api/v1/products', data = data, content_type="application/json")
 		self.assertEqual(response.status_code, 201)
 

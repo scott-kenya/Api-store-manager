@@ -4,6 +4,8 @@ from app.api.v1.views.products import Products, Product_id
 from app.api.v1.views.sales import Sales, Sale_id
 from app.api.v1.views.users_view import Register
 from app.api.v1.views.users_view import LoginUser
+
+
 zed = Blueprint("api", __name__, url_prefix="/api/v1")
 api = Api(zed)
 
