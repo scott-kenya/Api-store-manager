@@ -22,7 +22,6 @@ Flask-Login==0.4.1
 Flask-RESTful==0.3.6
 Flask-SQLAlchemy==2.3.2
 funcsigs==1.0.2
-futures==3.2.0
 gunicorn==19.9.0
 idna==2.6
 ipaddress==1.0.17
@@ -38,7 +37,6 @@ more-itertools==4.3.0
 nose==1.3.7
 passlib==1.7.1
 pathlib2==2.3.2
-pkg-resources==0.0.0
 pluggy==0.8.0
 py==1.7.0
 pyasn1==0.4.4
