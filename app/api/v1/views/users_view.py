@@ -15,6 +15,7 @@ class Register(Resource):
 		for user in users:
 			if user["email"] ==self.email:
 				return "user already exists"
+
 		id = len(users) + 1
 
 

@@ -35,7 +35,7 @@ class Products(Resource):
 		price = 'price'
 		Product_id = len(products)+1
 		quantity = 'quantity'
-		
+		createdby = 'createdby'
 		if not name or name == "":
 			return jsonify({"message": "Please enter product name"}), 404
 		if not price or price == "":
@@ -44,17 +44,16 @@ class Products(Resource):
 			return jsonify({"message": "Please enter valid id"}), 404
 		if not quantity or quantity == "":
 			return jsonify({"message": "Please enter value"}), 404
-		
 		else:
 
-			payload = {
+			sal = {
 			'name': data['name'],
 			'price': data['price'],
 			'Product_id': len(products)+1,
 			'quantity': data['quantity']
 			}
 
-			products.append(payload)
+			products.append(sal)
 			
 			return make_response(jsonify({'list': products}),201)
 
@@ -70,10 +69,12 @@ class Product_id(Resource):
 		return 404
 
 	@auth.verify_password
-	def delete(self, product_id):
-		product = [product for product in products if product['product_id'] == Product_id] or None
+	def delete(self, sale_id):
+		product = [product for product in products if product['product_id'] == product_id] or None
+
 		if product:
 			return jsonify({'message':'Item deleted'})
 		else:
 			return jsonify({'message': "item not found"})
 		return 404
+
