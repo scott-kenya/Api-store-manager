@@ -12,6 +12,9 @@ class Register(Resource):
 		self.password = data['password']
 		self.role = data['role']
 
+		for user in users:
+			if user["email"] ==self.email:
+				return "user already exists"
 		id = len(users) + 1
 
 

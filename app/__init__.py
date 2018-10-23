@@ -19,9 +19,11 @@ def create_app(self):
     auth = HTTPBasicAuth()
 
     from app.api.v1 import zed
-
     # register the blueprint
     app.register_blueprint(zed)
+
+    #from app.api.v2 import zed2
+    #app.register_blueprint(zed2)
 
     app.config['JWT_SECRET_KEY'] = 'jesusismylordandsavior'
     jwt = JWTManager(app)
