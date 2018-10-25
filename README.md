@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.com/scott-kenya/Api-store-manager.svg?branch=develop)](https://travis-ci.com/scott-kenya/Api-store-manager)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d38f20e43a4a68be592e/maintainability)](https://codeclimate.com/github/scott-kenya/Api-store-manager/maintainability)
 
 
 Configuration of Project Environment
