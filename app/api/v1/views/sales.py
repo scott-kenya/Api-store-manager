@@ -18,6 +18,12 @@ def verify(username, password):
         return False
     return USER_DATA.get(username) == password
 
+
+class Home(Resource):
+	"""docstring for home"""
+	def get():
+		return jsonify({"message": "Welcome to store manager"})
+
 class Sales(Resource):
 	@auth.verify_password
 	def get(self):
