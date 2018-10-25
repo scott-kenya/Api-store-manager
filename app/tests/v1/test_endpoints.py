@@ -6,64 +6,67 @@ from instance.config import app_config
 
 class Test_products(unittest.TestCase):
 
-	@classmethod
-	def setUpClass(self):
-		self.app = create_app(app_config['testing'])
-		self.test_client =self.app.test_client()
-		self.app_context = self.app.app_context()
-		self.app_context.push()
+    @classmethod
+    def setUpClass(self):
+        self.app = create_app(app_config['testing'])
+        self.test_client = self.app.test_client()
+        self.app_context = self.app.app_context()
+        self.app_context.push()
 
+    def test_post_products(self):
+        """ dummy data"""
+        data = json.dumps({
+            "name": "vanilla",
+            "price": 1500,
+            "product_id": 1,
+            "quantity": 20
+        })
 
-	def test_post_products(self):
-		""" dummy data"""
-		data = json.dumps({
-			"name": "vanilla",
-			"price": 1500,
-			"product_id": 1,
-			"quantity": 20
-			})
-		
-		response = self.test_client.post('/api/v1/products', data = data, content_type="application/json")
-		self.assertEqual(response.status_code, 201)
+        response = self.test_client.post(
+            '/api/v1/products', data=data, content_type="application/json")
+        self.assertEqual(response.status_code, 201)
 
-	def test_get_products(self):
-		response = self.test_client.get('/api/v1/products', content_type="application/json")
-		self.assertEqual(response.status_code, 200)
+    def test_get_products(self):
+        response = self.test_client.get(
+            '/api/v1/products', content_type="application/json")
+        self.assertEqual(response.status_code, 200)
 
-	def test_get_products_by_id(self):
-		response = self.test_client.get('/api/v1/products/1',content_type="application/json")
-		self.assertEqual(response.status_code, 200)
+    def test_get_products_by_id(self):
+        response = self.test_client.get(
+            '/api/v1/products/1', content_type="application/json")
+        self.assertEqual(response.status_code, 200)
 
+    def test_post_sales(self):
+        """ dummy data"""
+        data = json.dumps({
+            'name': 'vanilla',
+            'price': 1200,
+            'sale_id': 1,
+            'quantity': 50,
+            'createdby': 'Scott Duex'
+        })
+        response = self.test_client.post(
+            '/api/v1/sales', data=data, content_type="application/json")
+        self.assertEqual(response.status_code, 201)
 
+    def test_get_sales(self):
+        response = self.test_client.get(
+            '/api/v1/sales', content_type="application/json")
+        self.assertEqual(response.status_code, 200)
 
-	def test_post_sales(self):
-		""" dummy data"""
-		data = json.dumps({
-			'name': 'vanilla',
-			'price': 1200,
-			'sale_id': 1,
-			'quantity': 50,
-			'createdby': 'Scott Duex'
-			})
-		response = self.test_client.post('/api/v1/sales', data = data, content_type="application/json")
-		self.assertEqual(response.status_code, 201)
+    def test_get_sales_by_id(self):
+        response = self.test_client.get(
+            '/api/v1/sales/1', content_type="application/json")
+        self.assertEqual(response.status_code, 200)
 
-	def test_get_sales(self):
-		response = self.test_client.get('/api/v1/sales', content_type="application/json")
-		self.assertEqual(response.status_code, 200)
+    def test_invalid_id(self):
+        response = self.test_client.post(
+            '/api/v1/products', content_type="application/json")
+        self.assertEqual(response.status_code, 400)
 
-	def test_get_sales_by_id(self):
-		response = self.test_client.get('/api/v1/sales/1',content_type="application/json")
-		self.assertEqual(response.status_code, 200)
+    
 
-
-	def test_invalid_id(self):
-		response =self.test_client.post('/api/v1/products', content_type="application/json")
-		self.assertEqual(response.status_code, 400)
-
-	
-	@classmethod
-	def tearDownClass(self):
-		self.app_context.pop()
-		
+    @classmethod
+    def tearDownClass(self):
+        self.app_context.pop()
 
