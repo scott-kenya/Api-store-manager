@@ -61,7 +61,6 @@ class Test_products(unittest.TestCase):
 		response =self.test_client.post('/api/v1/products', content_type="application/json")
 		self.assertEqual(response.status_code, 400)
 
-	
 	@classmethod
 	def tearDownClass(self):
 		self.app_context.pop()
