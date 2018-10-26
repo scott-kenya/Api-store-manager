@@ -59,17 +59,19 @@ class  LoginUser(Resource):
 					"Message": "Login successful"
 					}))
 
-# Password verification
-if Users.verify_hash(password, email) == True:
-	access_token = create_access_token(identity = email)
-	refresh_token = create_refresh_token(identity = email)
+# # Password verification
+# class user_verification(Resource):
+# 	def verify_user():
+# 		if Users.verify_hash(password, email) == True:
+# 			access_token = create_access_token(identity = email)
+# 			refresh_token = create_refresh_token(identity = email)
 
-	return {
-		'Message': 'User was logged in successfully',
-		'status_code': 'ok',
-		'access_token': access_token,
-		'refresh_token': refresh_token
-	}, 200
+# 		return {
+# 			'Message': 'User was logged in successfully',
+# 			'status_code': 'ok',
+# 			'access_token': access_token,
+# 			'refresh_token': refresh_token
+# 		}, 200
 
-else:
-	return {'Message': 'wrong credentials'},400
+# 		else:
+# 			return {'Message': 'wrong credentials'},400
