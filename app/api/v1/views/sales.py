@@ -5,14 +5,10 @@ from flask_httpauth import HTTPBasicAuth
 
 
 sales = []
-auth = HTTPBasicAuth()
-
-USER_DATA = {
-    "admin": "SuperSecretPwd"
-}
 
 
-@auth.verify_password
+
+
 def verify(username, password):
     if not (username and password):
         return False
@@ -26,13 +22,12 @@ class Home(Resource):
 		return jsonify({"message": "Welcome to store manager"})
 
 class Sales(Resource):
-	@auth.verify_password
+	@jwt_required
 	def get(self):
 		"""Endpoint for fetching all products"""
 		return jsonify(sales)
 		return jsonify({'message':'Item not found'},{'status': 200})
-
-	@auth.verify_password
+	@jwt_required
 	def post(self):
 		"""Endpoint for adding new pdt"""
 		data = request.get_json()
@@ -69,7 +64,7 @@ class Sales(Resource):
 
 
 class Sale_id(Resource):
-	@auth.verify_password
+	@jwt_required
 	def get(self, sale_id):
 		sale = [sale for sale in sales if sale['sale_id'] == sale_id] or None
 		if sale:
@@ -77,8 +72,7 @@ class Sale_id(Resource):
 		else:
 			return jsonify({'message': "item not found"})
 		return 404
-
-	@auth.verify_password
+	@jwt_required
 	def delete(self, sale_id):
 		sale = [sale for sale in sales if sale['sale_id'] == sale_id] or None
 		if sale:

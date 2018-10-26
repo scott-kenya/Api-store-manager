@@ -1,18 +1,13 @@
 from flask import Flask, make_response, jsonify, request, abort, Blueprint
 from flask_restful import Resource, Api
-from flask_jwt_extended import (JWTManager, jwt_required, get_jwt_claims)
+from flask_jwt_extended import jwt_required, get_jwt_claims
 from flask_httpauth import HTTPBasicAuth
 
 
 products = []
-auth = HTTPBasicAuth()
-
-USER_DATA = {
-    "admin": "SuperSecretPwd"
-}
 
 
-@auth.verify_password
+
 def verify(username, password):
     if not (username and password):
         return False
@@ -25,13 +20,14 @@ class Home(Resource):
 		
 
 class Products(Resource):
-	@auth.verify_password
+	
+	@jwt_required
 	def get(self):
 		"""Endpoint for fetching all products"""
-		return jsonify(products)
+		return jsonify({products})
 		return jsonify({'message':'Item not found'},{'status': 200})
 
-	@auth.verify_password
+	@jwt_required
 	def post(self):
 		"""Endpoint for adding new pdt"""
 		data = request.get_json()
@@ -65,7 +61,8 @@ class Products(Resource):
 
 
 class Product_id(Resource):
-	@auth.verify_password
+	
+	@jwt_required
 	def get(self, product_id):
 		product = [product for product in products if product['product_id'] == Product_id] or None
 		if product:
@@ -74,7 +71,8 @@ class Product_id(Resource):
 			return jsonify({'message': "item not found"})
 		return 404
 
-	@auth.verify_password
+	
+	@jwt_required
 	def delete(self, sale_id):
 		product = [product for product in products if product['product_id'] == product_id] or None
 
